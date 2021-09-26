@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,7 +45,7 @@ namespace Workflows.UI.Services
             var inputs = new PluginCategory()
             {
                 Modules = new List<PluginModule>(),
-                ImagePath = "Assets\\input.png",
+                ImagePath = "/Assets/input.png",
                 Name = "Inputs",
                 CategoriesType = PluginCategoriesType.Input
 
@@ -91,7 +92,7 @@ namespace Workflows.UI.Services
                 Directory.CreateDirectory(_pluginDir);
 
             RefreshPluginFolder();
-            var _libWatcher = new FileSystemWatcher("plugins\\", "*.dll");
+            var _libWatcher = new FileSystemWatcher(".\\", "*.dll");
             _libWatcher.Created += OnCreated;
             _libWatcher.Deleted += OnDeleted;
             _libWatcher.IncludeSubdirectories = true;
@@ -129,12 +130,19 @@ namespace Workflows.UI.Services
                                 _logger.Log("Couldn't find a category of type {0}", pluginLib.Category.ToString());
                                 continue;
                             }
+                            _logger.Log("Added module {0} from {1} to category {2}"
+                                , module.Name
+                                , pluginLib.LibraryName
+                                , pluginLib.Category);
 
                             category.Modules.Add(module);
                         }
+
+                        WeakReferenceMessenger.Default.Send(new CategoriesChangedMessage(pluginLib.Category));
                     }
                 }
             }
+
         }
     }
 }

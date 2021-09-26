@@ -10,7 +10,22 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Miscellaneous Files",
       "ColorIndex": -1
+    },
+    "5d804297-0b11-426e-ae0d-e8fe9c699370": {
+      "ProjectGuid": "5d804297-0b11-426e-ae0d-e8fe9c699370",
+      "DisplayName": "Workflows.Shared",
+      "ColorIndex": 1
+    },
+    "ec7dae5d-9b74-4b42-aca7-5dce394766dc": {
+      "ProjectGuid": "ec7dae5d-9b74-4b42-aca7-5dce394766dc",
+      "DisplayName": "Workflows.SamplePluginLib.Inputs",
+      "ColorIndex": 2
+    },
+    "a2af3a3b-e097-40c7-b803-75a94f263494": {
+      "ProjectGuid": "a2af3a3b-e097-40c7-b803-75a94f263494",
+      "DisplayName": "Workflows.UI.Core",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }

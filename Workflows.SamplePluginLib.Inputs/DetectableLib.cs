@@ -28,7 +28,7 @@ namespace Workflows.SamplePluginLib.Inputs
             };
             csvConfigVals.Add(csvFilePath);
 
-            PluginModule csvSelector = new PluginModule("CSV Input", "CSVFile.png", csvConfigVals);
+            PluginModule csvSelector = new PluginModule("CSV Input", "/Assets/CSVFile.png", csvConfigVals);
 
             var emailConfigVals = new List<BaseInputComponent>();
             BaseInputComponent emailSender = new BaseInputComponent()
@@ -50,7 +50,7 @@ namespace Workflows.SamplePluginLib.Inputs
             emailConfigVals.Add(emailSender);
             emailConfigVals.Add(sendDate);  
 
-            PluginModule eMailAttachmentSelector = new PluginModule("E-Mail Input", "email.png", emailConfigVals);
+            PluginModule eMailAttachmentSelector = new PluginModule("E-Mail Input", "/Assets/email.png", emailConfigVals);
 
             _pluginModules.Add(eMailAttachmentSelector);
             _pluginModules.Add(csvSelector);

@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workflows.UI", "Workflows.UI\Workflows.UI.csproj", "{02022A16-FE50-438F-A98F-69C300ABD59F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflows.UI", "Workflows.UI\Workflows.UI.csproj", "{02022A16-FE50-438F-A98F-69C300ABD59F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workflows.UI.Core", "Workflows.UI.Core\Workflows.UI.Core.csproj", "{A2AF3A3B-E097-40C7-B803-75A94F263494}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflows.UI.Core", "Workflows.UI.Core\Workflows.UI.Core.csproj", "{A2AF3A3B-E097-40C7-B803-75A94F263494}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workflows.Shared", "Workflows.Shared\Workflows.Shared.csproj", "{5D804297-0B11-426E-AE0D-E8FE9C699370}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflows.Shared", "Workflows.Shared\Workflows.Shared.csproj", "{5D804297-0B11-426E-AE0D-E8FE9C699370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workflows.SamplePluginLib.Inputs", "Workflows.SamplePluginLib.Inputs\Workflows.SamplePluginLib.Inputs.csproj", "{EC7DAE5D-9B74-4B42-ACA7-5DCE394766DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflows.SamplePluginLib.Inputs", "Workflows.SamplePluginLib.Inputs\Workflows.SamplePluginLib.Inputs.csproj", "{EC7DAE5D-9B74-4B42-ACA7-5DCE394766DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleOutputLib", "SampleOutputLib\SampleOutputLib.csproj", "{118B69E0-A041-417F-BD94-74D18219EDBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{EC7DAE5D-9B74-4B42-ACA7-5DCE394766DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC7DAE5D-9B74-4B42-ACA7-5DCE394766DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC7DAE5D-9B74-4B42-ACA7-5DCE394766DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{118B69E0-A041-417F-BD94-74D18219EDBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{118B69E0-A041-417F-BD94-74D18219EDBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{118B69E0-A041-417F-BD94-74D18219EDBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{118B69E0-A041-417F-BD94-74D18219EDBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Workflows.Shared.Models
 {
-    public class PluginCategory
+    public class PluginCategory : ObservableObject
     {
         public string Name { get; set; }
 
@@ -12,7 +13,15 @@ namespace Workflows.Shared.Models
 
         public PluginCategoriesType CategoriesType { get; set; }
 
-        public List<PluginModule> Modules { get; set; } = new List<PluginModule>();
+        private List<PluginModule> _modules = new List<PluginModule>();
+        public List<PluginModule> Modules
+        {
+            get {  return _modules; }
+            set { 
+                SetProperty(ref _modules, value);
+                OnPropertyChanged("IsEnabled");
+            }
+        }
 
         public bool IsEnabled
         {

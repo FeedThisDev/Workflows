@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Mvvm.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using Workflows.Shared.Models;
 using Workflows.Shared.Services.Contracts;
 
 namespace Workflows.Shared.Services
@@ -18,7 +20,8 @@ namespace Workflows.Shared.Services
         {
             string msg = args == null ? formatString : String.Format(formatString, args);
             string logEntry = $"{DateTime.Now}: {msg}{System.Environment.NewLine}" ;
-            LogHistory.Add(logEntry);
+            LogHistory.Insert(0, logEntry);
+            WeakReferenceMessenger.Default.Send(new LogChangedMessage(msg));
         }
     }
 }
