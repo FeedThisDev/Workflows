@@ -5,7 +5,7 @@ using Workflows.Shared.Models;
 
 namespace Workflows.SamplePluginLib.Inputs
 {
-    public class DetectableLib : IPluginLibrary
+    public class DetectableLibrary : IPluginLibrary
     {
         public string LibraryName =>  "SampleInputs";
 
@@ -15,7 +15,7 @@ namespace Workflows.SamplePluginLib.Inputs
 
         List<PluginModule> _pluginModules = new List<PluginModule>();
 
-        public DetectableLib()
+        public DetectableLibrary()
         {
             var csvConfigVals = new List<BaseInputComponent>();
             BaseInputComponent csvFilePath = new BaseInputComponent()

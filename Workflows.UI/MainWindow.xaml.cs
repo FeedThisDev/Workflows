@@ -15,6 +15,7 @@ namespace Workflows.UI
         public MainWindow()
         {
             InitializeComponent();
+
         }
     }
 }

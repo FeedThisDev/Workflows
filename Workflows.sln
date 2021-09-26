@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflows.Shared", "Workflo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workflows.SamplePluginLib.Inputs", "Workflows.SamplePluginLib.Inputs\Workflows.SamplePluginLib.Inputs.csproj", "{EC7DAE5D-9B74-4B42-ACA7-5DCE394766DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleOutputLib", "SampleOutputLib\SampleOutputLib.csproj", "{118B69E0-A041-417F-BD94-74D18219EDBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Workflows.SamplePluginLib.Outputs", "SampleOutputLib\Workflows.SamplePluginLib.Outputs.csproj", "{118B69E0-A041-417F-BD94-74D18219EDBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

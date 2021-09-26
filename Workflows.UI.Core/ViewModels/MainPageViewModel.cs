@@ -42,8 +42,6 @@ namespace Workflows.UI.Core.ViewModels
             }
         }
 
-        public int SelectedCategoryIdx { get; set; }
-
         public IReadOnlyList<PluginCategory> Categories
         {
             get
@@ -51,8 +49,6 @@ namespace Workflows.UI.Core.ViewModels
                 return _pluginService.Categories;
             }
         }
-
-
 
         public IReadOnlyList<string> LogHistory
         {

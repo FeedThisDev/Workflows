@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Workflows.Shared.Models
@@ -13,8 +14,8 @@ namespace Workflows.Shared.Models
 
         public PluginCategoriesType CategoriesType { get; set; }
 
-        private List<PluginModule> _modules = new List<PluginModule>();
-        public List<PluginModule> Modules
+        private ObservableCollection<PluginModule> _modules = new ObservableCollection<PluginModule>();
+        public ObservableCollection<PluginModule> Modules
         {
             get {  return _modules; }
             set { 
@@ -27,7 +28,7 @@ namespace Workflows.Shared.Models
         {
             get
             {
-                return Modules.Count > 0;   
+                return _modules.Count > 0;   
             }
         }
 

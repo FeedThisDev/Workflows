@@ -94,8 +94,7 @@
             
         </Grid>
         <GroupBox Grid.Row="1" Grid.ColumnSpan="3" Header="Log" HeaderStringFormat="" >
-            <ListBox DataContext="{Binding LogHistory, Mode=OneWay}" 
-                      ItemsSource="{Binding Mode=OneWay}"
+            <ListBox ItemsSource="{Binding LogHistory,Mode=OneWay}"
                      d:ItemsSource="{d:SampleData}" />
         </GroupBox>
 

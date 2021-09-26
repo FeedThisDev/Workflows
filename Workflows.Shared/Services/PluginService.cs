@@ -3,6 +3,7 @@ using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -17,9 +18,9 @@ namespace Workflows.UI.Services
     {
         private const string _pluginDir = ".\\";
 
-        public List<IPluginLibrary> PluginLibraries { get; private set; } 
+        public List<IPluginLibrary> PluginLibraries { get; private set; }
 
-        public List<Shared.Models.PluginCategory> Categories { get; private set; }
+        public List<PluginCategory> Categories { get; private set; }
 
         private readonly ILoggingService _logger = Ioc.Default.GetRequiredService<ILoggingService>();
 
@@ -40,11 +41,10 @@ namespace Workflows.UI.Services
 
         private void CreateCategories()
         {
-            Categories = new List<Shared.Models.PluginCategory>();
+            Categories = new List<PluginCategory>();
 
             var inputs = new PluginCategory()
             {
-                Modules = new List<PluginModule>(),
                 ImagePath = "/Assets/input.png",
                 Name = "Inputs",
                 CategoriesType = PluginCategoriesType.Input
@@ -55,7 +55,6 @@ namespace Workflows.UI.Services
 
             var logic = new PluginCategory()
             {
-                Modules = new List<PluginModule>(),
                 ImagePath = "Assets\\logic.png",
                 Name = "Logic",
                 CategoriesType = PluginCategoriesType.Logic
@@ -66,7 +65,6 @@ namespace Workflows.UI.Services
 
             var actions = new PluginCategory()
             {
-                Modules = new List<PluginModule>(),
                 ImagePath = "Assets\\action.png",
                 Name = "Actions",
                 CategoriesType = PluginCategoriesType.Action
@@ -77,7 +75,6 @@ namespace Workflows.UI.Services
 
             var outputs = new PluginCategory()
             {
-                Modules = new List<PluginModule>(),
                 ImagePath = "Assets\\output.png",
                 Name = "Outputs",
                 CategoriesType = PluginCategoriesType.Output
@@ -114,7 +111,6 @@ namespace Workflows.UI.Services
         {
             foreach (string assemblyPath in Directory.GetFiles(_pluginDir, "*.dll"))
             {
-
                 var assembly = Assembly.LoadFrom(assemblyPath);
 
                 foreach (var typeInfo in assembly.DefinedTypes)
@@ -122,22 +118,29 @@ namespace Workflows.UI.Services
                     if (typeInfo.ImplementedInterfaces.Contains(typeof(IPluginLibrary)))
                     {
                         var pluginLib = assembly.CreateInstance(typeInfo.FullName) as IPluginLibrary;
-                        foreach (var module in pluginLib.PluginModules)
-                        {
-                            var category = Categories.SingleOrDefault(x => x.CategoriesType == pluginLib.Category);
-                            if(category == null)
-                            {
-                                _logger.Log("Couldn't find a category of type {0}", pluginLib.Category.ToString());
-                                continue;
-                            }
-                            _logger.Log("Added module {0} from {1} to category {2}"
-                                , module.Name
-                                , pluginLib.LibraryName
-                                , pluginLib.Category);
 
-                            category.Modules.Add(module);
+                        var category = Categories.SingleOrDefault(x => x.CategoriesType == pluginLib.Category);
+                        if (category == null)
+                        {
+                            _logger.Log("Couldn't find a category of type {0}", pluginLib.Category.ToString());
+                            continue;
                         }
 
+                     
+                        foreach (var module in pluginLib.PluginModules)
+                        {
+                            if (category.Modules.Any(x => x.Name == module.Name))
+                                continue;
+
+                            category.Modules.Add(module);
+                            _logger.Log("Added module {0} from {1} to category {2}"
+                          , module.Name
+                          , pluginLib.LibraryName
+                          , pluginLib.Category);
+                        }
+
+                        //bit ugly WPF hack to trigger DataTrigger Styles *sorry*
+                        Categories = Categories.ToList();
                         WeakReferenceMessenger.Default.Send(new CategoriesChangedMessage(pluginLib.Category));
                     }
                 }
