@@ -68,7 +68,9 @@
             <ListView ItemTemplate="{DynamicResource ModuleItemTemplate}" 
                       DataContext="{Binding SelectedCategory, Mode=OneWay}"
                       ItemsSource="{Binding Modules, Mode=OneWay}"
-                      HorizontalContentAlignment="Center">
+                      HorizontalContentAlignment="Center"
+                      PreviewMouseLeftButtonDown="List_PreviewMouseLeftButtonDown" 
+                      PreviewMouseMove="List_MouseMove">
                 <d:ListView.ItemsSource>
                     <x:Array Type="models:PluginModule">
                         <models:PluginModule Name="CSV" ImagePath="/Assets/action.png"/>
@@ -83,15 +85,7 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="#FF000000" BorderThickness="1" CornerRadius="8" 
-                    Grid.Column="1" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"
-                Width="200" Height="100" >
-                <!--<Canvas >
-                    <Rectangle  Width="200" Height="100" Fill="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}" />-->
-                <Label VerticalAlignment="Center" HorizontalContentAlignment="Center" TextBlock.FontStyle="Oblique" Content="Drag Item here to start"/>
-                <!--</Canvas>-->
-            </Border>
-            
+            <local:WorkflowItemControl/>
         </Grid>
         <GroupBox Grid.Row="1" Grid.ColumnSpan="3" Header="Log" HeaderStringFormat="" >
             <ListBox ItemsSource="{Binding LogHistory,Mode=OneWay}"

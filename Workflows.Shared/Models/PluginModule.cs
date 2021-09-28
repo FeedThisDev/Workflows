@@ -20,5 +20,6 @@ namespace Workflows.Shared.Models
             ImagePath = icon;    
             ConfigValues = configValues;    
         }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
+using System;
 using System.Collections.Generic;
 using Workflows.Shared.Contracts;
 using Workflows.Shared.Models;
@@ -10,11 +11,17 @@ namespace Workflows.UI.Core.ViewModels
 {
     public class MainPageViewModel : ObservableObject
     {
+       
+
         private readonly IPluginService _pluginService = Ioc.Default.GetRequiredService<IPluginService>();
 
         private readonly ILoggingService _logger = Ioc.Default.GetRequiredService<ILoggingService>();
 
-        public MainPageViewModel()
+        public readonly Guid StartGuid = new Guid("9BB1E9B2-0D32-46A2-A85F-6BDA85897293");
+    
+
+
+    public MainPageViewModel()
         {
             WeakReferenceMessenger.Default.Register<LogChangedMessage>(this, (r, m) =>
             {
