@@ -1,20 +1,39 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Workflows.Shared.Models;
 
-namespace Workflows.UI.Core.ViewModels
+namespace Workflows.Shared.ViewModels
 {
     public class WorkflowItemViewModel : ObservableObject
     {
-        public WorkflowItemViewModel()
-        {
-            Outputs = new List<WorkflowItemViewModel>();
-        }
+        public Guid ID { get; private set; }
+        public List<WorkflowItemViewModel> Outputs { get; set; }
+
+        public WorkflowItemViewModel Bottom { get; set; }
 
         public WorkflowItemViewModel Input { get; set; }
-        public List<WorkflowItemViewModel> Outputs { get; set; }
+
+        public WorkflowItemViewModel() { }
+
+        public WorkflowItemViewModel(WorkflowItemViewModel parent, Guid id)
+        {
+            Outputs = new List<WorkflowItemViewModel>();
+            Input = parent;
+            ID = id;
+            Input = parent;
+
+            if (parent == null)
+                return;
+
+            if (parent.Outputs.Any(x => x.ID == id))
+                return;
+
+            parent.Outputs.Add(this);
+        }
+
 
         private PluginModule _selectedModule;
         public PluginModule SelectedModule
@@ -31,10 +50,6 @@ namespace Workflows.UI.Core.ViewModels
                 OnPropertyChanged("ImagePath");
             }
         }
-
-        public int X { get; set; }
-
-        public int Y { get; set; }
 
         public string Label
         {

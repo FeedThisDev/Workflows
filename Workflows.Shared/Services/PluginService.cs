@@ -12,7 +12,7 @@ using Workflows.Shared.Contracts;
 using Workflows.Shared.Models;
 using Workflows.Shared.Services.Contracts;
 
-namespace Workflows.UI.Services
+namespace Workflows.Shared.Services
 {
     public class PluginService : ObservableObject, IPluginService
     {

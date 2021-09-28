@@ -4,7 +4,7 @@ using System.Windows;
 using Workflows.Shared.Contracts;
 using Workflows.Shared.Services;
 using Workflows.Shared.Services.Contracts;
-using Workflows.UI.Services;
+//using Workflows.UI.Services;
 
 namespace Workflows.UI
 {
@@ -22,6 +22,7 @@ namespace Workflows.UI
                    new ServiceCollection()
                    .AddSingleton<IPluginService, PluginService>()
                    .AddSingleton<ILoggingService, LoggingService>()
+                   .AddSingleton<IWorkflowGridGenerator, WorkflowGridGenerator>()
                    .BuildServiceProvider());
         }
     }

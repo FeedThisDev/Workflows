@@ -1,9 +1,10 @@
 ﻿
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using Workflows.Shared.Models;
-using Workflows.UI.Core.ViewModels;
+using Workflows.Shared.ViewModels;
 
 namespace Workflows.UI
 {
@@ -13,7 +14,6 @@ namespace Workflows.UI
     /// </summary>
     public partial class WorkflowItemControl : UserControl
     {
-     
         public WorkflowItemControl()
         {
             InitializeComponent();
@@ -28,18 +28,20 @@ namespace Workflows.UI
             }
         }
 
-        private void DropZone_Drop(object sender, DragEventArgs e)
+        private void DropZone_Drop(object dropZone, DragEventArgs e)
         {
             if (e.Data.GetDataPresent("pluginData"))
             {
+                var border = dropZone as Border;
+                var vm = border.DataContext as WorkflowItemViewModel;
+
                 var module = e.Data.GetData("pluginData") as PluginModule;
 
-                var vm = new WorkflowItemViewModel()
-                {
-                    SelectedModule = module,
-                };
-                var border = sender as Border;
-                border.DataContext = vm;
+                vm.SelectedModule = module;
+
+                vm.Outputs.Add(new WorkflowItemViewModel(vm, new System.Guid()));
+
+                WeakReferenceMessenger.Default.Send(new AddedWorkflowItemMessage(new System.Guid()));
             }
         }
     }

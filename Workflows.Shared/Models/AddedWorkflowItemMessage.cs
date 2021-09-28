@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Workflows.Shared.Models
 {
-    public class AddedWorkflowItem : ValueChangedMessage<Guid>
+    public class AddedWorkflowItemMessage : ValueChangedMessage<Guid>
     {
-        public AddedWorkflowItem(Guid value) : base(value)
+        public AddedWorkflowItemMessage(Guid value) : base(value)
         {
         }
     }

@@ -9,7 +9,7 @@
         xmlns:local="clr-namespace:Workflows.UI"
         xmlns:Services="clr-namespace:Workflows.Shared.Services;assembly=Workflows.Shared" 
         xmlns:models="clr-namespace:Workflows.Shared.Models;assembly=Workflows.Shared"
-        xmlns:viewModels="clr-namespace:Workflows.UI.Core.ViewModels;assembly=Workflows.UI.Core"
+        xmlns:viewModels="clr-namespace:Workflows.Shared.ViewModels;assembly=Workflows.Shared"
         mc:Ignorable="d"
         Title="Workflow UI Prototype" Height="450" Width="800" Icon="/workflow.png" WindowState="Maximized">
     <Window.Resources>
@@ -79,13 +79,8 @@
                 </d:ListView.ItemsSource>
             </ListView>
         </GroupBox>
-        <Grid Grid.Column="2" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"  >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="4*"/>
-            </Grid.ColumnDefinitions>
-            <local:WorkflowItemControl/>
+        <Grid Grid.Column="2" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Name="WorkflowAreaBase" >
+       
         </Grid>
         <GroupBox Grid.Row="1" Grid.ColumnSpan="3" Header="Log" HeaderStringFormat="" >
             <ListBox ItemsSource="{Binding LogHistory,Mode=OneWay}"

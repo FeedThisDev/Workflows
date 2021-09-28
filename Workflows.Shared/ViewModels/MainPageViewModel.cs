@@ -7,7 +7,7 @@ using Workflows.Shared.Contracts;
 using Workflows.Shared.Models;
 using Workflows.Shared.Services.Contracts;
 
-namespace Workflows.UI.Core.ViewModels
+namespace Workflows.Shared.ViewModels
 {
     public class MainPageViewModel : ObservableObject
     {
@@ -17,11 +17,9 @@ namespace Workflows.UI.Core.ViewModels
 
         private readonly ILoggingService _logger = Ioc.Default.GetRequiredService<ILoggingService>();
 
-        public readonly Guid StartGuid = new Guid("9BB1E9B2-0D32-46A2-A85F-6BDA85897293");
     
 
-
-    public MainPageViewModel()
+        public MainPageViewModel()
         {
             WeakReferenceMessenger.Default.Register<LogChangedMessage>(this, (r, m) =>
             {
@@ -31,6 +29,8 @@ namespace Workflows.UI.Core.ViewModels
             {
                 OnPropertyChanged("Categories");
             });
+
+        
 
         }
 

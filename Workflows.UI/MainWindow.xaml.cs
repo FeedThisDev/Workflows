@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -6,6 +7,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using Workflows.Shared.Contracts;
 using Workflows.Shared.Models;
+using Workflows.Shared.Services.Contracts;
+using Workflows.Shared.ViewModels;
 
 namespace Workflows.UI
 {
@@ -14,16 +17,31 @@ namespace Workflows.UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Point startPoint;
+        private Point startPoint; // for drag
+
+        private readonly IWorkflowGridGenerator _gridGen = Ioc.Default.GetRequiredService<IWorkflowGridGenerator>();
+
+
+        //public readonly Guid StartGuid = new Guid("9BB1E9B2-0D32-46A2-A85F-6BDA85897293");
+
+        WorkflowItemViewModel _startArea; 
 
         public MainWindow()
         {
-            //WorkflowItemArea startArea = new WorkflowItemArea();
-
-
-
             InitializeComponent();
+            _startArea = new WorkflowItemViewModel(null, new Guid("9BB1E9B2-0D32-46A2-A85F-6BDA85897293"));
 
+            var gridGen = new WorkflowGridGenerator();
+            var grid = gridGen.Generate(_startArea);
+            WorkflowAreaBase.Children.Add(grid);
+
+            WeakReferenceMessenger.Default.Register<AddedWorkflowItemMessage>(this, (r, m) =>
+            {
+                var grid = _gridGen.Generate(_startArea);
+                WorkflowAreaBase.Children.Clear();
+                WorkflowAreaBase.Children.Add(grid);
+
+            });
         }
 
         private void List_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
