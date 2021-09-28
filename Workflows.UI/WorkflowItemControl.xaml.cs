@@ -40,6 +40,7 @@ namespace Workflows.UI
                 vm.SelectedModule = module;
 
                 vm.Outputs.Add(new WorkflowItemViewModel(vm, new System.Guid()));
+                vm.Bottoms.Add(new WorkflowItemViewModel(vm, null, new System.Guid()));
 
                 WeakReferenceMessenger.Default.Send(new AddedWorkflowItemMessage(new System.Guid()));
             }

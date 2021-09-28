@@ -14,7 +14,7 @@
     <Grid>
         <Border BorderBrush="#FF000000" BorderThickness="1" CornerRadius="8" 
                      Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"
-                Width="200" Height="150"
+                Width="200" Height="150" Margin="20,20,20,20"
                     x:Name="borderUI" Drop="DropZone_Drop"  DragEnter="DropZone_DragEnter" 
           AllowDrop="True" >
             <StackPanel>

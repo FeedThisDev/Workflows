@@ -12,26 +12,51 @@ namespace Workflows.Shared.ViewModels
         public Guid ID { get; private set; }
         public List<WorkflowItemViewModel> Outputs { get; set; }
 
-        public WorkflowItemViewModel Bottom { get; set; }
+        public List<WorkflowItemViewModel> Bottoms { get; set; }
 
         public WorkflowItemViewModel Input { get; set; }
 
-        public WorkflowItemViewModel() { }
+        public WorkflowItemViewModel Top { get; set; }
 
-        public WorkflowItemViewModel(WorkflowItemViewModel parent, Guid id)
-        {
+        public WorkflowItemViewModel() { 
+            Bottoms = new List<WorkflowItemViewModel>();
             Outputs = new List<WorkflowItemViewModel>();
-            Input = parent;
+        }
+
+        public WorkflowItemViewModel(WorkflowItemViewModel input, Guid id)
+        {
+            Bottoms = new List<WorkflowItemViewModel>();
+            Outputs = new List<WorkflowItemViewModel>();
+            Input = input;
             ID = id;
-            Input = parent;
+            Input = input;
 
-            if (parent == null)
+            if (input == null)
                 return;
 
-            if (parent.Outputs.Any(x => x.ID == id))
+            if (input.Outputs.Any(x => x.ID == id))
                 return;
 
-            parent.Outputs.Add(this);
+            input.Outputs.Add(this);
+        }
+
+        public WorkflowItemViewModel(WorkflowItemViewModel top, WorkflowItemViewModel input, Guid id)
+        {
+            Bottoms = new List<WorkflowItemViewModel>();
+            Outputs = new List<WorkflowItemViewModel>();
+            Top = top;
+            Input = input;
+            ID = id;
+
+            if(top != null && !top.Bottoms.Any(x => x.ID == id))
+            {
+                top.Bottoms.Add(this);
+            }
+
+            if (input != null && !input.Outputs.Any(x => x.ID == id))
+            {
+                input.Outputs.Add(this);
+            }
         }
 
 
