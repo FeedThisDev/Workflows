@@ -45,8 +45,6 @@ namespace Workflows.UI
                 return DynamicGrid;
             }
 
-
-
             ColumnDefinition rightColumn = new ColumnDefinition();
             DynamicGrid.ColumnDefinitions.Add(rightColumn);
 

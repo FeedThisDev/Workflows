@@ -80,7 +80,7 @@
             </ListView>
         </GroupBox>
         <ScrollViewer ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" Grid.Column="2"  >
-        <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Name="WorkflowAreaBase" >
+        <Grid Name="WorkflowAreaBase" Background="LightSteelBlue">
        
         </Grid>
         </ScrollViewer>
