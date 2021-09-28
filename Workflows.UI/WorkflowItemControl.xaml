@@ -18,6 +18,18 @@
                     x:Name="borderUI" Drop="DropZone_Drop"  DragEnter="DropZone_DragEnter" 
           AllowDrop="True" >
             <StackPanel>
+                <Button Height="30" Width="30" HorizontalAlignment="Right" Visibility="Collapsed">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsDeletable}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <Image Source="/assets/delete.png" />
+                </Button>
                 <Image Source="{Binding ImagePath, Mode=OneWay}" Width="64" Height="64" Margin="20"/>
                 <Label VerticalAlignment="Bottom" HorizontalContentAlignment="Center" TextBlock.FontStyle="Oblique" Content="{Binding Label, Mode=OneWay}"/>
             </StackPanel>

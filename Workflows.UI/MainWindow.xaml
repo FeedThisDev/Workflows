@@ -64,7 +64,16 @@
                 </d:ListView.ItemsSource>
             </ListView>
         </GroupBox>
-        <GroupBox Header="Plugin" Grid.Column="1">
+        <GroupBox Header="Plugin" Grid.Column="1" Visibility="Visible">
+            <!--<GroupBox.Style>
+                <Style TargetType="GroupBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding PluginsVisible}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </GroupBox.Style>-->
             <ListView ItemTemplate="{DynamicResource ModuleItemTemplate}" 
                       DataContext="{Binding SelectedCategory, Mode=OneWay}"
                       ItemsSource="{Binding Modules, Mode=OneWay}"

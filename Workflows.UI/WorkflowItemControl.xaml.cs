@@ -45,5 +45,10 @@ namespace Workflows.UI
                 WeakReferenceMessenger.Default.Send(new AddedWorkflowItemMessage(new System.Guid()));
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

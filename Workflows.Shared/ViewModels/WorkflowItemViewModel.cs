@@ -1,14 +1,17 @@
 ﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using Workflows.Shared.Models;
 
 namespace Workflows.Shared.ViewModels
 {
     public class WorkflowItemViewModel : ObservableObject
     {
+        public ICommand DeleteMeCmd { get; }
         public Guid ID { get; private set; }
         public List<WorkflowItemViewModel> Outputs { get; set; }
 
@@ -21,10 +24,12 @@ namespace Workflows.Shared.ViewModels
         public WorkflowItemViewModel() { 
             Bottoms = new List<WorkflowItemViewModel>();
             Outputs = new List<WorkflowItemViewModel>();
+            DeleteMeCmd = new RelayCommand(DeleteMe);
         }
 
         public WorkflowItemViewModel(WorkflowItemViewModel input, Guid id)
         {
+            DeleteMeCmd = new RelayCommand(DeleteMe);
             Bottoms = new List<WorkflowItemViewModel>();
             Outputs = new List<WorkflowItemViewModel>();
             Input = input;
@@ -39,6 +44,15 @@ namespace Workflows.Shared.ViewModels
 
             input.Outputs.Add(this);
         }
+
+        public bool IsDeletable
+        {
+            get
+            {
+                return SelectedModule != null && Outputs.Count > 0;
+            }
+        }
+
 
         public WorkflowItemViewModel(WorkflowItemViewModel top, WorkflowItemViewModel input, Guid id)
         {
@@ -73,6 +87,7 @@ namespace Workflows.Shared.ViewModels
 
                 OnPropertyChanged("Label");
                 OnPropertyChanged("ImagePath");
+                OnPropertyChanged("IsDeletable");
             }
         }
 
@@ -94,6 +109,11 @@ namespace Workflows.Shared.ViewModels
                     return "/Assets/placeholder.png";
                 return SelectedModule.ImagePath;
             }
+        }
+
+        public void DeleteMe()
+        {
+            throw new NotImplementedException();
         }
     }
 }

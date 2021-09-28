@@ -28,13 +28,20 @@ namespace Workflows.Shared.ViewModels
             WeakReferenceMessenger.Default.Register<CategoriesChangedMessage>(this, (r, m) =>
             {
                 OnPropertyChanged("Categories");
+                
             });
 
         
 
         }
 
-
+        public bool PluginsVisible
+        {
+            get
+            {
+                return _selectedCategory != null && _selectedCategory.Modules.Count > 0;
+            }
+        }
 
         private PluginCategory _selectedCategory;
         public PluginCategory SelectedCategory 
@@ -46,6 +53,7 @@ namespace Workflows.Shared.ViewModels
             set
             {
                 SetProperty(ref _selectedCategory, value);
+                OnPropertyChanged(nameof(PluginsVisible));
             }
         }
 

@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Assets\action.png" />
     <None Remove="Assets\CSVFile.png" />
+    <None Remove="Assets\delete.png" />
     <None Remove="Assets\DocFile.png" />
     <None Remove="Assets\email.png" />
     <None Remove="Assets\input.png" />
@@ -36,6 +37,7 @@
     <Resource Include="Assets\CSVFile.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\delete.png" />
     <Resource Include="Assets\DocFile.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
